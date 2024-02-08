@@ -40,7 +40,7 @@ class Play extends Phaser.Scene {
         this.ball.body.setDamping(true).setDrag(0.5)
 
         // add walls
-        /*
+        
         this.wallA = this.physics.add.sprite(0, height / 4, 'wall')
         this.wallA.setX(Phaser.Math.Between(0 + this.wallA.width/2, width - this.wallA.width/2))
         this.wallA.body.setImmovable(true)
@@ -58,7 +58,7 @@ class Play extends Phaser.Scene {
         this.oneWay.setX(Phaser.Math.Between(0 + this.oneWay.width/2, width - this.oneWay.width/2))
         this.oneWay.body.setImmovable(true)
         this.oneWay.body.checkCollision.down = false 
-        */ 
+        
         // add pointer input
         this.input.on('pointerdown', (pointer) =>{
             let shotDirection = pointer.y <= this.ball.y ? 1 : -1;
@@ -68,9 +68,9 @@ class Play extends Phaser.Scene {
         })
 
         // cup/ball collision
-        /*this.physics.add.collider(this.ball, this.cup, (ball, cup) => {
+        this.physics.add.collider(this.ball, this.cup, (ball, cup) => {
             ball.destroy()
-        })*/ 
+        })
         this.physics.add.collider(this.ball, this.cup, (ball) => {
             ball.x = width/2
             ball.y = height - height/10
@@ -79,10 +79,10 @@ class Play extends Phaser.Scene {
         })
 
         // ball/wall collision
-        //this.physics.add.collider(this.ball, this.walls)
+        this.physics.add.collider(this.ball, this.walls)
 
         // ball/one-way collision
-        //this.physics.add.collider(this.ball, this.oneWay)
+        this.physics.add.collider(this.ball, this.oneWay)
     }
 
     update() {
